@@ -8,8 +8,8 @@ enum TrackingState {
 
 class ARCoreAnchor {
   TrackingState tracking;
-  double extendX;
-  double extendZ;
+  double extentX;
+  double extentZ;
   ArCorePose centerPose;
 
   ARCoreAnchor.fromMap(Map<dynamic, dynamic> map) {
@@ -25,8 +25,8 @@ class ARCoreAnchor {
         this.tracking = TrackingState.STOPPED;
     }
 
-    this.extendX = map["extendX"];
-    this.extendZ = map["extendZ"];
+    this.extentX = map["extentX"];
+    this.extentZ = map["extentZ"];
     this.centerPose = ArCorePose.fromMap(map["centerPose"]);
   }
 }
