@@ -165,7 +165,7 @@ class ArCoreController {
         {'name': node.name, 'degreesPerSecond': node.degreesPerSecond.value});
   }
 
-  void _handleVisibilityChanged(ArCoreRotatingNode node) {
+  void _handleVisibilityChanged(ArCoreNode node) {
     _channel.invokeMethod<void>('visibilityChanged',
         {'name': node.name, 'visibility': !node.isHidden.value});
   }
