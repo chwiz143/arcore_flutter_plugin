@@ -48,7 +48,7 @@ class _HelloWorldState extends State<HelloWorld> {
       shape: view,
       position: vector.Vector3(0, 0, 0),
     );
-    controller.addArCoreNode(node);
+    controller.addARCoreNode(node);
   }
 
   Future _addSphere(ArCoreController controller) async {
@@ -66,7 +66,7 @@ class _HelloWorldState extends State<HelloWorld> {
       shape: sphere,
       position: vector.Vector3(0, 0, -0),
     );
-    controller.addArCoreNode(node);
+    controller.addARCoreNode(node);
   }
 
   void _addCylindre(ArCoreController controller) {
@@ -83,7 +83,7 @@ class _HelloWorldState extends State<HelloWorld> {
       shape: cylindre,
       position: vector.Vector3(0.0, -0.5, -2.0),
     );
-    controller.addArCoreNode(node);
+    controller.addARCoreNode(node);
   }
 
   void _addCube(ArCoreController controller) {
@@ -99,7 +99,7 @@ class _HelloWorldState extends State<HelloWorld> {
       shape: cube,
       position: vector.Vector3(-0.5, 0.5, -3.5),
     );
-    controller.addArCoreNode(node);
+    controller.addARCoreNode(node);
   }
 
   @override

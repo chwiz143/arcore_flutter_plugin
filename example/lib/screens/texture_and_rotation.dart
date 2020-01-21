@@ -60,7 +60,7 @@ class _ObjectWithTextureAndRotationState
       position: vector.Vector3(0, 0, -1.5),
       rotation: vector.Vector4(0, 0, 0, 0),
     );
-    controller.addArCoreNode(node);
+    controller.addARCoreNode(node);
   }
 
   onDegreesPerSecondChange(double value) {

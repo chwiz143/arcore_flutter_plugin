@@ -2,7 +2,7 @@ import 'package:vector_math/vector_math_64.dart';
 
 import 'arcore_node.dart';
 
-class ArCoreReferenceNode extends ArCoreNode {
+class ArCoreReferenceNode extends ARCoreNode {
   /// Filenaeme of sfb object in assets folder (generated with Import Sceneform Asset)
   /// https://developers.google.com/ar/develop/java/sceneform/import-assets
   final String obcject3DFileName;
@@ -14,7 +14,7 @@ class ArCoreReferenceNode extends ArCoreNode {
     String name,
     this.obcject3DFileName,
     this.objectUrl,
-    List<ArCoreNode> children = const [],
+    List<ARCoreNode> children = const [],
     Vector3 position,
     Vector3 scale,
     Vector4 rotation,

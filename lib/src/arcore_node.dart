@@ -5,8 +5,8 @@ import 'package:arcore_flutter_plugin/src/utils/vector_utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:vector_math/vector_math_64.dart';
 
-class ArCoreNode {
-  ArCoreNode({
+class ARCoreNode {
+  ARCoreNode({
     this.shape,
     String name,
     Vector3 position,
@@ -22,7 +22,7 @@ class ArCoreNode {
             : rotation is Vector4 ? rotation : null),
         isHidden = ValueNotifier(isHidden ?? false);
 
-  final List<ArCoreNode> children;
+  final List<ARCoreNode> children;
 
   final ArCoreShape shape;
 
