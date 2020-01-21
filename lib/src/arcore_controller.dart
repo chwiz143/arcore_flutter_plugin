@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:async';
 
 import 'package:arcore_flutter_plugin/src/arcore_anchor.dart';
 import 'package:arcore_flutter_plugin/src/arcore_rotating_node.dart';
@@ -15,6 +16,24 @@ typedef UnsupportedHandler = void Function(String text);
 typedef ArCoreHitResultHandler = void Function(List<ArCoreHitTestResult> hits);
 typedef ArCorePlaneHandler = void Function(ARCorePlane plane);
 typedef ArCoreImageHandler = void Function(ARCoreAnchor marker);
+
+/// 端末のARCoreサポート状態
+enum ApkAvailabilityStatus {
+  UnsupportedDeviceNotCapable,  // ARCoreをサポートしていないデバイス
+  SupportedNotInstalled,        // ARCoreはサポートされているがインストールされていない
+  SupportedInstalled,           // ARCoreはサポートされていてインストール済み
+  SupportedApkTooOld,           // ARCoreはサポートされていてインストール済みだがバージョンが古い
+  UnknownError,                 // 何らかのエラーでサポート状態を取得できなかった
+  UnknownTimedOut,              // サポートチェック中にタイムアウト
+}
+
+/// ユーザーにARCoreのインストールを求めた結果
+enum ApkInstallationStatus {
+  Installed,              // インストールされた(既にインストール済みも含む)
+  DeviceNotCompatible,    // ARCoreをサポートしていないデバイスなのでインストールできない
+  UserDeclined,           // ユーザーがインストールを拒否
+  ErrorFaital,            // 何らかのエラーでインストール失敗
+}
 
 class ArCoreController {
   ArCoreController({
@@ -38,6 +57,30 @@ class ArCoreController {
   ArCorePlaneHandler onPlaneDetected;
   ArCoreImageHandler onImageDetected;
   ArCoreImageHandler onAddNodeForAnchor;
+
+  /// 端末のARCoreサポート状態を取得
+  static Future<ApkAvailabilityStatus> getApkAvailabilityStatus() async {
+    var completer = new Completer<ApkAvailabilityStatus>();
+    var status = ApkAvailabilityStatus.SupportedInstalled;
+
+    // TODO
+    // ネイティブからARCoreサポート状態を受け取る
+
+    completer.complete(status);
+    return completer.future;
+  }
+
+  /// ユーザーにARCoreのインストールを求める
+  static Future<ApkInstallationStatus> requestApkInstallation() async {
+    var completer = new Completer<ApkInstallationStatus>();
+    var status = ApkInstallationStatus.Installed;
+
+    // TODO
+    // ネイティブからARCoreインストール結果を受け取る
+
+    completer.complete(status);
+    return completer.future;
+  }
 
   init() async {
     try {

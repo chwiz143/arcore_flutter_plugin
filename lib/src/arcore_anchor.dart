@@ -7,22 +7,22 @@ enum TrackingState {
 }
 
 class ARCoreAnchor {
-  TrackingState tracking;
+  TrackingState trackingState;
   double extentX;
   double extentZ;
   ArCorePose centerPose;
 
   ARCoreAnchor.fromMap(Map<dynamic, dynamic> map) {
-    String trackStr = map["tracking"];
+    String trackStr = map["trackingState"];
     switch (trackStr) {
       case "TRACKING":
-        this.tracking = TrackingState.TRACKING;
+        this.trackingState = TrackingState.TRACKING;
         break;
       case "PAUSED":
-        this.tracking = TrackingState.PAUSED;
+        this.trackingState = TrackingState.PAUSED;
         break;
       default:
-        this.tracking = TrackingState.STOPPED;
+        this.trackingState = TrackingState.STOPPED;
     }
 
     this.extentX = map["extentX"];
@@ -45,10 +45,29 @@ enum ARCorePlaneType {
   VERTICAL,
 }
 
+enum TrackingMethod {
+  FULL_TRACKING,
+  LAST_KNOWN_POSE,
+  NOT_TRACKING,
+}
+
 class ARCoreMarker extends ARCoreAnchor {
   String name;
+  TrackingMethod trackingMethod;
 
   ARCoreMarker.fromMap(Map map) : super.fromMap(map) {
     this.name = map["name"];
+    String trackMethod = map["trackingMethod"];
+    switch (trackMethod) {
+      case "FULL_TRACKING":
+        this.trackingMethod = TrackingMethod.FULL_TRACKING;
+        break;
+      case "LAST_KNOWN_POSE":
+        this.trackingMethod = TrackingMethod.LAST_KNOWN_POSE;
+        break;
+      case "NOT_TRACKING":
+      default:
+        this.trackingMethod = TrackingMethod.NOT_TRACKING;
+    }
   }
 }
