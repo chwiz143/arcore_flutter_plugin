@@ -4,7 +4,7 @@ import 'package:vector_math/vector_math_64.dart';
 
 import 'package:arcore_flutter_plugin/src/shape/arcore_shape.dart';
 
-class ArCoreRotatingNode extends ArCoreNode {
+class ArCoreRotatingNode extends ARCoreNode {
   ArCoreRotatingNode({
     this.shape,
     double degreesPerSecond,

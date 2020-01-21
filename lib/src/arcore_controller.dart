@@ -141,21 +141,21 @@ class ArCoreController {
     return Future.value();
   }
 
-  Future<void> addArCoreNode(ArCoreNode node, {String parentNodeName}) {
+  Future<void> addARCoreNode(ARCoreNode node, {String parentNodeName}) {
     assert(node != null);
     final params = _addParentNodeNameToParams(node.toMap(), parentNodeName);
     print(params.toString());
     _addListeners(node);
-    return _channel.invokeMethod('addArCoreNode', params);
+    return _channel.invokeMethod('addARCoreNode', params);
   }
 
-  Future<void> addArCoreNodeWithAnchor(ArCoreNode node,
+  Future<void> addARCoreNodeWithAnchor(ARCoreNode node,
       {String parentNodeName}) {
     assert(node != null);
     final params = _addParentNodeNameToParams(node.toMap(), parentNodeName);
     print(params.toString());
     _addListeners(node);
-    return _channel.invokeMethod('addArCoreNodeWithAnchor', params);
+    return _channel.invokeMethod('addARCoreNodeWithAnchor', params);
   }
 
   Future<void> removeNode({@required String nodeName}) {
@@ -185,7 +185,7 @@ class ArCoreController {
     return geometryMap;
   }
 
-  void _addListeners(ArCoreNode node) {
+  void _addListeners(ARCoreNode node) {
     node.position.addListener(() => _handlePositionChanged(node));
     node?.shape?.materials?.addListener(() => _updateMaterials(node));
     node.isHidden.addListener(() => _handleVisibilityChanged(node));
@@ -198,7 +198,7 @@ class ArCoreController {
     }
   }
 
-  void _handlePositionChanged(ArCoreNode node) {
+  void _handlePositionChanged(ARCoreNode node) {
     _channel.invokeMethod<void>('positionChanged',
         _getHandlerParams(node, convertVector3ToMap(node.position.value)));
   }
@@ -208,18 +208,18 @@ class ArCoreController {
         {'name': node.name, 'degreesPerSecond': node.degreesPerSecond.value});
   }
 
-  void _handleVisibilityChanged(ArCoreNode node) {
+  void _handleVisibilityChanged(ARCoreNode node) {
     _channel.invokeMethod<void>('visibilityChanged',
         {'name': node.name, 'visibility': !node.isHidden.value});
   }
 
-  void _updateMaterials(ArCoreNode node) {
+  void _updateMaterials(ARCoreNode node) {
     _channel.invokeMethod<void>(
         'updateMaterials', _getHandlerParams(node, node.shape.toMap()));
   }
 
   Map<String, dynamic> _getHandlerParams(
-      ArCoreNode node, Map<String, dynamic> params) {
+      ARCoreNode node, Map<String, dynamic> params) {
     final Map<String, dynamic> values = <String, dynamic>{'name': node.name}
       ..addAll(params);
     return values;
